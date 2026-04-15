@@ -1,0 +1,1 @@
+- [ ] Continuer l'implémentation de Catégorie comme une entitée
