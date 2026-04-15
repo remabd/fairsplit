@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { SpacesModule } from './spaces/spaces.module.js';
 import { ExpensesModule } from './expenses/expenses.module.js';
 import { SettlementsModule } from './settlements/settlements.module.js';
+import { CategoryModule } from './category/category.module';
 
 @Module({
     imports: [
@@ -34,6 +35,7 @@ import { SettlementsModule } from './settlements/settlements.module.js';
         SpacesModule,
         ExpensesModule,
         SettlementsModule,
+        CategoryModule,
     ],
 })
 export class AppModule {}
