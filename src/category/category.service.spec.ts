@@ -5,6 +5,7 @@ import { Category } from '../entities';
 
 const mockCategoryRepo = () => ({
     find: jest.fn(),
+    findOneBy: jest.fn(),
 });
 
 describe('CategoryService', () => {
@@ -43,6 +44,26 @@ describe('CategoryService', () => {
 
             expect(catRepo.find).toHaveBeenCalled();
             expect(result).toEqual(categories);
+        });
+    });
+
+    describe('Find one', () => {
+        it('Should return one category', async () => {
+            const category = { id: '1', name: 'restaurants' } as Category;
+            catRepo.findOneBy.mockResolvedValue(category);
+
+            const result = await service.findOne('1');
+
+            expect(catRepo.findOneBy).toHaveBeenCalledTimes(1);
+            expect(result).toEqual(category);
+        });
+
+        it('Should return null if id incorrect', async () => {
+            catRepo.findOneBy.mockResolvedValue(null);
+
+            const result = await service.findOne('2');
+            expect(catRepo.findOneBy).toHaveBeenCalledTimes(1);
+            expect(result).toEqual(null);
         });
     });
 });

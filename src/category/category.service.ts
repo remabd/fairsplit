@@ -16,6 +16,11 @@ export class CategoryService {
     async findAll(): Promise<Category[]> {
         return await this.categoryRepository.find();
     }
+
+    async findOne(id: string): Promise<Category | null> {
+        return await this.categoryRepository.findOneBy({ id: id });
+    }
+
     // create(createCategoryDto: CreateCategoryDto) {
     //     return 'This action adds a new category';
     // }
