@@ -5,7 +5,7 @@ import {
     UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -54,10 +54,25 @@ export class CategoryService {
         return category;
     }
 
-    update(id: number, updateCategoryDto: UpdateCategoryDto) {
-        return `This action updates a #${id} category`;
+    async update(
+        id: string,
+        updateCategoryDto: UpdateCategoryDto,
+    ): Promise<UpdateResult> {
+        const existing = await this.categoryRepository.findOneBy({ id: id });
+        if (!existing) throw new NotFoundException('Category not found');
+        const category = await this.categoryRepository.update(
+            id,
+            updateCategoryDto,
+        );
+        if (!category) throw new InternalServerErrorException();
+        return category;
     }
-    remove(id: number) {
-        return `This action removes a #${id} category`;
+
+    async remove(id: string): Promise<void> {
+        const existing = await this.categoryRepository.findOneBy({ id: id });
+        if (!existing) throw new NotFoundException('Category not found');
+        const result = await this.categoryRepository.delete(id);
+        if (!result) throw new InternalServerErrorException();
+        return;
     }
 }
