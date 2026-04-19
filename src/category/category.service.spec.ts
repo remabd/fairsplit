@@ -2,10 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CategoryService } from './category.service';
 import { Category } from '../entities';
+import { NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { CreateCategoryDto } from './dto/create-category.dto';
 
 const mockCategoryRepo = () => ({
     find: jest.fn(),
     findOneBy: jest.fn(),
+    save: jest.fn(),
 });
 
 describe('CategoryService', () => {
@@ -52,18 +55,42 @@ describe('CategoryService', () => {
             const category = { id: '1', name: 'restaurants' } as Category;
             catRepo.findOneBy.mockResolvedValue(category);
 
-            const result = await service.findOne('1');
+            const result = await service.findOneById('1');
 
             expect(catRepo.findOneBy).toHaveBeenCalledTimes(1);
             expect(result).toEqual(category);
         });
 
-        it('Should return null if id incorrect', async () => {
+        it('Should throw error if missing', async () => {
             catRepo.findOneBy.mockResolvedValue(null);
 
-            const result = await service.findOne('2');
-            expect(catRepo.findOneBy).toHaveBeenCalledTimes(1);
-            expect(result).toEqual(null);
+            await expect(service.findOneById('2')).rejects.toThrow(
+                NotFoundException,
+            );
+        });
+    });
+
+    describe('Create', () => {
+        it('Should create', async () => {
+            const category = { name: 'restaurants' } as CreateCategoryDto;
+
+            catRepo.findOneBy.mockResolvedValue(null);
+            catRepo.save.mockResolvedValue(category);
+
+            const result = await service.create(category);
+
+            expect(catRepo.save).toHaveBeenCalledTimes(1);
+            expect(result.name).toEqual(category.name);
+        });
+
+        it('Should throw error when duplicating name', async () => {
+            const category = { name: 'restaurants' } as CreateCategoryDto;
+            const existing = { id: '1', name: 'restaurants' } as Category;
+
+            catRepo.findOneBy.mockResolvedValue(existing);
+            await expect(service.create(category)).rejects.toThrow(
+                UnauthorizedException,
+            );
         });
     });
 });
