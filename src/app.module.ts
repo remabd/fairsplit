@@ -8,11 +8,11 @@ import {
     ExpenseSplit,
     Settlement,
     InviteToken,
-} from './entities/index.js';
-import { AuthModule } from './auth/auth.module.js';
-import { SpacesModule } from './spaces/spaces.module.js';
-import { ExpensesModule } from './expenses/expenses.module.js';
-import { SettlementsModule } from './settlements/settlements.module.js';
+} from './entities/index';
+import { AuthModule } from './auth/auth.module';
+import { SpacesModule } from './spaces/spaces.module';
+import { ExpensesModule } from './expenses/expenses.module';
+import { SettlementsModule } from './settlements/settlements.module';
 import { CategoryModule } from './category/category.module';
 
 @Module({

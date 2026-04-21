@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { randomUUID } from 'node:crypto';
-import { User, UserRole, InviteToken } from '../entities/index.js';
+import { User, UserRole, InviteToken } from '../entities/index';
 
 @Injectable()
 export class AuthService {

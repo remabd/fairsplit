@@ -5,9 +5,9 @@ import {
     CreateDateColumn,
     OneToMany,
 } from 'typeorm';
-import { SpaceParticipant } from './space-participant.entity.js';
-import { Expense } from './expense.entity.js';
-import { Settlement } from './settlement.entity.js';
+import { SpaceParticipant } from './space-participant.entity';
+import { Expense } from './expense.entity';
+import { Settlement } from './settlement.entity';
 
 @Entity()
 export class Space {

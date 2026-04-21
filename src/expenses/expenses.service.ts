@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Expense, ExpenseSplit, User, UserRole } from '../entities/index.js';
-import { type ExpenseSplitDto } from './dto/create-expense.dto.js';
+import { Expense, ExpenseSplit, User, UserRole } from '../entities/index';
+import { type ExpenseSplitDto } from './dto/create-expense.dto';
 
 @Injectable()
 export class ExpensesService {

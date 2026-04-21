@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SpacesController } from './spaces.controller.js';
-import { SpacesService } from './spaces.service.js';
-import { Space, SpaceParticipant, User } from '../entities/index.js';
+import { SpacesController } from './spaces.controller';
+import { SpacesService } from './spaces.service';
+import { Space, SpaceParticipant, User } from '../entities/index';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Space, SpaceParticipant, User])],

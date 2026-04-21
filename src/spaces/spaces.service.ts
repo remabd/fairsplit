@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Space, SpaceParticipant, User, UserRole } from '../entities/index.js';
+import { Space, SpaceParticipant, User, UserRole } from '../entities/index';
 
 @Injectable()
 export class SpacesService {

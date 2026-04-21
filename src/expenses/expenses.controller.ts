@@ -9,12 +9,12 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ExpensesService } from './expenses.service.js';
-import { CreateExpenseDto } from './dto/create-expense.dto.js';
-import { UpdateExpenseDto } from './dto/update-expense.dto.js';
-import { CurrentUser } from '../common/decorators/current-user.decorator.js';
-import { SpaceMemberGuard } from '../common/guards/space-member.guard.js';
-import { User } from '../entities/index.js';
+import { ExpensesService } from './expenses.service';
+import { CreateExpenseDto } from './dto/create-expense.dto';
+import { UpdateExpenseDto } from './dto/update-expense.dto';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { SpaceMemberGuard } from '../common/guards/space-member.guard';
+import { User } from '../entities/index';
 
 @Controller('spaces/:spaceId/expenses')
 @UseGuards(AuthGuard('jwt'), SpaceMemberGuard)

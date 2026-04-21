@@ -8,7 +8,7 @@ import {
     Min,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ExpenseSplitDto } from './create-expense.dto.js';
+import { ExpenseSplitDto } from './create-expense.dto';
 
 export class UpdateExpenseDto {
     @IsOptional()

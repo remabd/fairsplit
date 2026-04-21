@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
-import { ExpensesService } from './expenses.service.js';
+import { ExpensesService } from './expenses.service';
 import {
     Expense,
     ExpenseSplit,
     UserRole,
     type User,
-} from '../entities/index.js';
+} from '../entities/index';
 
 const mockExpenseRepo = () => ({
     create: jest.fn(),

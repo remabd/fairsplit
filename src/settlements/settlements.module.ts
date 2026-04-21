@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SettlementsController } from './settlements.controller.js';
-import { SettlementsService } from './settlements.service.js';
+import { SettlementsController } from './settlements.controller';
+import { SettlementsService } from './settlements.service';
 import {
     Settlement,
     Expense,
     ExpenseSplit,
     SpaceParticipant,
-} from '../entities/index.js';
+} from '../entities/index';
 
 @Module({
     imports: [

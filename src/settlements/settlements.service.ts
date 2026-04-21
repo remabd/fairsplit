@@ -6,7 +6,7 @@ import {
     Expense,
     ExpenseSplit,
     SpaceParticipant,
-} from '../entities/index.js';
+} from '../entities/index';
 
 export interface DebtEdge {
     from: string;

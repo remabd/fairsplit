@@ -1,14 +1,14 @@
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthService } from './auth.service.js';
-import { LoginDto } from './dto/login.dto.js';
-import { RegisterDto } from './dto/register.dto.js';
-import { InviteDto } from './dto/invite.dto.js';
-import { AcceptInviteDto } from './dto/accept-invite.dto.js';
-import { CurrentUser } from '../common/decorators/current-user.decorator.js';
-import { Roles } from '../common/guards/roles.guard.js';
-import { RolesGuard } from '../common/guards/roles.guard.js';
-import { User, UserRole } from '../entities/index.js';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { InviteDto } from './dto/invite.dto';
+import { AcceptInviteDto } from './dto/accept-invite.dto';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { Roles } from '../common/guards/roles.guard';
+import { RolesGuard } from '../common/guards/roles.guard';
+import { User, UserRole } from '../entities/index';
 
 @Controller('auth')
 export class AuthController {

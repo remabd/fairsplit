@@ -5,8 +5,8 @@ import {
     ManyToOne,
     CreateDateColumn,
 } from 'typeorm';
-import { Space } from './space.entity.js';
-import { User } from './user.entity.js';
+import { Space } from './space.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Settlement {

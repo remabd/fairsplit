@@ -1,7 +1,7 @@
 import {
     SettlementsService,
     type BalanceSummary,
-} from './settlements.service.js';
+} from './settlements.service';
 
 describe('SettlementsService', () => {
     let service: SettlementsService;

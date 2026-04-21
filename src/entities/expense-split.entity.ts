@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Expense } from './expense.entity.js';
-import { User } from './user.entity.js';
+import { Expense } from './expense.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class ExpenseSplit {

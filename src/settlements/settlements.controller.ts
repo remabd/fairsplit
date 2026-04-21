@@ -8,11 +8,11 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { SettlementsService } from './settlements.service.js';
-import { CreateSettlementDto } from './dto/create-settlement.dto.js';
-import { CurrentUser } from '../common/decorators/current-user.decorator.js';
-import { SpaceMemberGuard } from '../common/guards/space-member.guard.js';
-import { User } from '../entities/index.js';
+import { SettlementsService } from './settlements.service';
+import { CreateSettlementDto } from './dto/create-settlement.dto';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { SpaceMemberGuard } from '../common/guards/space-member.guard';
+import { User } from '../entities/index';
 
 @Controller('spaces/:spaceId/settlements')
 @UseGuards(AuthGuard('jwt'), SpaceMemberGuard)

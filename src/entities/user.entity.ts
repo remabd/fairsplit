@@ -5,7 +5,7 @@ import {
     CreateDateColumn,
     OneToMany,
 } from 'typeorm';
-import { SpaceParticipant } from './space-participant.entity.js';
+import { SpaceParticipant } from './space-participant.entity';
 
 export enum UserRole {
     ADMIN = 'admin',

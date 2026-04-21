@@ -3,8 +3,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { ConflictException, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { AuthService } from './auth.service.js';
-import { User, UserRole, InviteToken } from '../entities/index.js';
+import { AuthService } from './auth.service';
+import { User, UserRole, InviteToken } from '../entities/index';
 
 const mockUserRepo = () => ({
     findOneBy: jest.fn(),

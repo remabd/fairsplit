@@ -7,7 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import type { Request } from 'express';
-import { SpaceParticipant, type User } from '../../entities/index.js';
+import { SpaceParticipant, type User } from '../../entities/index';
 
 @Injectable()
 export class SpaceMemberGuard implements CanActivate {

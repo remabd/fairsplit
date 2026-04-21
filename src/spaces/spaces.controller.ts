@@ -8,13 +8,13 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { SpacesService } from './spaces.service.js';
-import { CreateSpaceDto } from './dto/create-space.dto.js';
-import { AddParticipantDto } from './dto/add-participant.dto.js';
-import { CurrentUser } from '../common/decorators/current-user.decorator.js';
-import { Roles, RolesGuard } from '../common/guards/roles.guard.js';
-import { SpaceMemberGuard } from '../common/guards/space-member.guard.js';
-import { User, UserRole } from '../entities/index.js';
+import { SpacesService } from './spaces.service';
+import { CreateSpaceDto } from './dto/create-space.dto';
+import { AddParticipantDto } from './dto/add-participant.dto';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { Roles, RolesGuard } from '../common/guards/roles.guard';
+import { SpaceMemberGuard } from '../common/guards/space-member.guard';
+import { User, UserRole } from '../entities/index';
 
 @Controller('spaces')
 @UseGuards(AuthGuard('jwt'))

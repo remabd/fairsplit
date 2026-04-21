@@ -5,8 +5,8 @@ import {
     ForbiddenException,
     NotFoundException,
 } from '@nestjs/common';
-import { SpacesService } from './spaces.service.js';
-import { Space, SpaceParticipant, User, UserRole } from '../entities/index.js';
+import { SpacesService } from './spaces.service';
+import { Space, SpaceParticipant, User, UserRole } from '../entities/index';
 
 const mockSpaceRepo = () => ({
     create: jest.fn(),
