@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CategoryService } from './category.service';
 import { Category } from '../entities';
-import { NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
@@ -31,6 +31,10 @@ describe('CategoryService', () => {
 
         service = module.get<CategoryService>(CategoryService);
         catRepo = module.get(getRepositoryToken(Category));
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
     });
 
     it('should be defined', () => {
@@ -92,7 +96,7 @@ describe('CategoryService', () => {
 
             catRepo.findOneBy.mockResolvedValue(existing);
             await expect(service.create(category)).rejects.toThrow(
-                UnauthorizedException,
+                ConflictException,
             );
         });
     });
@@ -103,8 +107,7 @@ describe('CategoryService', () => {
                 name: 'restaurants',
             } as UpdateCategoryDto;
 
-            catRepo.findOneBy.mockResolvedValue(null);
-
+            catRepo.save.mockResolvedValue(false);
             await expect(service.update('1', category)).rejects.toThrow(
                 NotFoundException,
             );
@@ -113,34 +116,24 @@ describe('CategoryService', () => {
         it('Should update', async () => {
             const category = { name: 'restaurants' } as UpdateCategoryDto;
 
-            catRepo.findOneBy.mockResolvedValue({
-                id: '1',
-                name: 'restarants',
-            });
-            catRepo.update.mockResolvedValue({ id: '1', name: 'restaurants' });
+            catRepo.save.mockResolvedValue({ id: '1', name: 'restaurants' });
 
             const result = await service.update('1', category);
 
-            expect(catRepo.update).toHaveBeenCalledTimes(1);
             expect(result).toEqual({ id: '1', name: 'restaurants' });
         });
     });
 
     describe('Delete', () => {
-        it('Shoud throw NotFoundException if not found', async () => {
-            catRepo.findOneBy.mockResolvedValue(null);
+        it('Should throw NotFoundException if not found', async () => {
+            catRepo.delete.mockResolvedValue({ affected: 0 });
             await expect(service.remove('1')).rejects.toThrow(
                 NotFoundException,
             );
-            expect(catRepo.findOneBy).toHaveBeenCalledTimes(1);
         });
 
         it('Should remove', async () => {
-            catRepo.findOneBy.mockResolvedValue({
-                id: '1',
-                name: 'restaurants',
-            });
-            catRepo.delete.mockResolvedValue(true);
+            catRepo.delete.mockResolvedValue({ affected: 1 });
             await service.remove('1');
             expect(catRepo.delete).toHaveBeenCalledTimes(1);
             expect(catRepo.delete).toHaveBeenCalledWith('1');
