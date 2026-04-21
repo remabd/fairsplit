@@ -7,9 +7,10 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
 } from 'typeorm';
-import { Space } from './space.entity.js';
-import { User } from './user.entity.js';
-import { ExpenseSplit } from './expense-split.entity.js';
+import { Space } from './space.entity';
+import { User } from './user.entity';
+import { ExpenseSplit } from './expense-split.entity';
+import { Category } from './category.entity';
 
 @Entity()
 export class Expense {
@@ -34,8 +35,11 @@ export class Expense {
     @Column()
     description!: string;
 
-    @Column({ nullable: true })
-    category!: string;
+    @ManyToOne(() => Category, (category) => category.expenses)
+    category!: Category;
+
+    @Column()
+    categoryId!: string;
 
     @Column({ type: 'date' })
     date!: string;
