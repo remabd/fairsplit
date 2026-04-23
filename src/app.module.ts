@@ -8,6 +8,7 @@ import {
     ExpenseSplit,
     Settlement,
     InviteToken,
+    Category,
 } from './entities/index';
 import { AuthModule } from './auth/auth.module';
 import { SpacesModule } from './spaces/spaces.module';
@@ -28,6 +29,7 @@ import { CategoryModule } from './category/category.module';
                 ExpenseSplit,
                 Settlement,
                 InviteToken,
+                Category,
             ],
             synchronize: true,
         }),

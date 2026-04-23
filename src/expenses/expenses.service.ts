@@ -23,7 +23,7 @@ export class ExpensesService {
         paidById: string,
         amount: number,
         description: string,
-        category: string | undefined,
+        categoryId: string,
         date: string,
         splits: ExpenseSplitDto[],
     ): Promise<Expense> {
@@ -34,7 +34,7 @@ export class ExpensesService {
             paidById,
             amount,
             description,
-            category,
+            categoryId,
             date,
         });
         await this.expenseRepo.save(expense);
@@ -75,7 +75,7 @@ export class ExpensesService {
         updates: {
             amount?: number;
             description?: string;
-            category?: string;
+            categoryId: string;
             date?: string;
             splits?: ExpenseSplitDto[];
         },
@@ -94,7 +94,8 @@ export class ExpensesService {
         if (updates.amount !== undefined) expense.amount = updates.amount;
         if (updates.description !== undefined)
             expense.description = updates.description;
-        if (updates.category !== undefined) expense.category = updates.category;
+        if (updates.categoryId !== undefined)
+            expense.categoryId = updates.categoryId;
         if (updates.date !== undefined) expense.date = updates.date;
 
         await this.expenseRepo.save(expense);

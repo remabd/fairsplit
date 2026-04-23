@@ -107,7 +107,7 @@ describe('CategoryService', () => {
                 name: 'restaurants',
             } as UpdateCategoryDto;
 
-            catRepo.save.mockResolvedValue(false);
+            catRepo.update.mockResolvedValue(false);
             await expect(service.update('1', category)).rejects.toThrow(
                 NotFoundException,
             );
@@ -116,7 +116,11 @@ describe('CategoryService', () => {
         it('Should update', async () => {
             const category = { name: 'restaurants' } as UpdateCategoryDto;
 
-            catRepo.save.mockResolvedValue({ id: '1', name: 'restaurants' });
+            catRepo.update.mockResolvedValue({ affected: 1, rows: {} });
+            catRepo.findOneBy.mockResolvedValue({
+                id: '1',
+                name: 'restaurants',
+            });
 
             const result = await service.update('1', category);
 

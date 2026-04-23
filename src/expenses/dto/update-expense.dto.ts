@@ -33,4 +33,7 @@ export class UpdateExpenseDto {
     @ValidateNested({ each: true })
     @Type(() => ExpenseSplitDto)
     splits?: ExpenseSplitDto[];
+
+    @IsString()
+    categoryId!: string;
 }

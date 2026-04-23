@@ -32,7 +32,7 @@ export class ExpensesController {
             user.id,
             dto.amount,
             dto.description,
-            dto.category,
+            dto.categoryId,
             dto.date,
             dto.splits,
         );
